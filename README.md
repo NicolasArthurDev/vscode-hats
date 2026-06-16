@@ -21,7 +21,7 @@ its own color.
 ## Usage
 
 - **Click the 🎓 button** → switch profile right away (native picker).
-- **Click the ⚙ gear** next to it → secondary actions:
+- **Click the ˄ chevron** next to it → secondary actions:
   - *New profile from template…* (Python, Java General, Java Spring, …)
   - *Set window color…* (choose a hat or enter a `#rrggbb` hex)
   - *Clear window color*

@@ -42,8 +42,8 @@ export class StatusBarView implements vscode.Disposable {
 
 		this.options = this.create(100);
 		this.options.command = MENU_COMMAND;
-		this.options.text = '$(gear)';
-		this.options.tooltip = 'Hats: window color and profile options';
+		this.options.text = '$(chevron-up)';
+		this.options.tooltip = 'Hats: more options (window color, new profile)';
 
 		this.renderLabel();
 		this.main.show();
