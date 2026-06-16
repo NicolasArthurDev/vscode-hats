@@ -49,6 +49,7 @@ Colors are written to the workspace's `.vscode/settings.json`
 | `hats.palette` | Your named hats (`{ name, color }`). Falls back to a built-in palette. |
 | `hats.statusBar.alignment` | `left` or `right` (default `right`). |
 | `hats.statusBar.showWorkspaceName` | Show the workspace name on the button. |
+| `hats.statusBar.icon` | Codicon name for the button (e.g. `mortar-board`, `briefcase`, `versions`). Empty for none. |
 | `hats.color` | The applied color (managed by Hats). |
 
 ## Design notes

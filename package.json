@@ -112,6 +112,11 @@
           "type": "boolean",
           "default": true,
           "description": "Show the current workspace name on the Hats button."
+        },
+        "hats.statusBar.icon": {
+          "type": "string",
+          "default": "mortar-board",
+          "markdownDescription": "Codicon name shown on the Hats button (without the `$()` wrapper). Browse names at https://microsoft.github.io/vscode-codicons/dist/codicon.html. Examples: `mortar-board`, `briefcase`, `versions`, `arrow-swap`, `account`, `extensions`. Leave empty for no icon."
         }
       }
     }

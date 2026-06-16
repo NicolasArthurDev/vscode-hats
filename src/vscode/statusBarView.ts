@@ -3,7 +3,11 @@
 // Color and template actions live in the Command Palette under "Hats:".
 
 import * as vscode from 'vscode';
-import { getShowWorkspaceName, getStatusBarAlignment } from './configService';
+import {
+	getShowWorkspaceName,
+	getStatusBarAlignment,
+	getStatusBarIcon,
+} from './configService';
 
 const SWITCH_COMMAND = 'hats-profile-switcher.switchProfile';
 
@@ -38,7 +42,8 @@ export class StatusBarView implements vscode.Disposable {
 
 	private renderLabel(): void {
 		const label = getShowWorkspaceName() ? workspaceName() : 'Hats';
-		this.item.text = `$(mortar-board) ${label}`;
+		const icon = getStatusBarIcon();
+		this.item.text = icon ? `$(${icon}) ${label}` : label;
 	}
 }
 

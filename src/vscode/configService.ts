@@ -50,3 +50,8 @@ export function getStatusBarAlignment(): vscode.StatusBarAlignment {
 export function getShowWorkspaceName(): boolean {
 	return config().get<boolean>('statusBar.showWorkspaceName', true);
 }
+
+/** Codicon name for the button, without the `$()` wrapper. */
+export function getStatusBarIcon(): string {
+	return config().get<string>('statusBar.icon', 'mortar-board').trim();
+}
