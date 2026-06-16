@@ -20,15 +20,24 @@ its own color.
 
 ## Usage
 
-1. Click the **🎓 Hats** button in the status bar (or run `Hats: Open Menu`).
-2. Pick an action:
-   - *Switch profile…*
-   - *New profile from template…*
-   - *Set window color…* (choose a hat or enter a `#rrggbb` hex)
-   - *Clear window color*
+- **Click the 🎓 button** → switch profile right away (native picker).
+- **Click the ⚙ gear** next to it → secondary actions:
+  - *New profile from template…* (Python, Java General, Java Spring, …)
+  - *Set window color…* (choose a hat or enter a `#rrggbb` hex)
+  - *Clear window color*
 
 Colors are written to the workspace's `.vscode/settings.json`
 (`workbench.colorCustomizations`) and re-applied on startup.
+
+## Notes about profiles
+
+- **Keep Hats in every profile.** Profiles each have their own extensions, so a
+  new profile will not include Hats until you run **Apply Extension to all
+  Profiles** from the Extensions view gear menu. There is no API to do this
+  automatically; Hats shows a one-time tip on first run.
+- **Reload after switching.** When you switch profiles, VSCode reassociates the
+  workspace and asks you to reload so the new profile's extensions load. This is
+  native VSCode behavior and cannot be suppressed by an extension.
 
 ## Settings
 
