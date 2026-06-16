@@ -1,26 +1,41 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+// Composition root: wires the status bar button, commands and startup
+// behavior. Keep this file thin — real logic lives in core/ and vscode/.
+
 import * as vscode from 'vscode';
+import { StatusBarView } from './vscode/statusBarView';
+import { openMenu, pickColor } from './vscode/menu';
+import { clear, reapplyStoredColor } from './vscode/colorStore';
+import { createProfileFromTemplate, switchProfile } from './vscode/profileService';
+import { HATS_SECTION } from './vscode/configService';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+const PREFIX = 'hats-profile-switcher';
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "hats-profile-switcher" is now active!');
+export function activate(context: vscode.ExtensionContext): void {
+	const statusBar = new StatusBarView();
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('hats-profile-switcher.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Hats!');
-	});
+	context.subscriptions.push(
+		statusBar,
+		registerCommand(`${PREFIX}.openMenu`, openMenu),
+		registerCommand(`${PREFIX}.switchProfile`, switchProfile),
+		registerCommand(`${PREFIX}.newProfileFromTemplate`, createProfileFromTemplate),
+		registerCommand(`${PREFIX}.setColor`, pickColor),
+		registerCommand(`${PREFIX}.clearColor`, clear),
+		vscode.workspace.onDidChangeConfiguration((event) => {
+			if (event.affectsConfiguration(HATS_SECTION)) {
+				statusBar.refresh();
+			}
+		}),
+	);
 
-	context.subscriptions.push(disposable);
+	// Re-apply the stored hat color in case the workspace dropped it on open.
+	void reapplyStoredColor();
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate(): void {}
+
+function registerCommand(
+	id: string,
+	handler: () => Promise<void>,
+): vscode.Disposable {
+	return vscode.commands.registerCommand(id, () => handler());
+}
