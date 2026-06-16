@@ -1,45 +1,62 @@
-// The Hats status bar button. Shows the workspace name (the active profile
-// name is not exposed by any API yet) and opens the Hats menu on click.
+// The Hats status bar UI: a main button that switches profiles in one click,
+// plus a small gear next to it for the less frequent color/template actions.
+//
+// The main button shows the workspace name (the active profile name is not
+// exposed by any API yet) and triggers the native profile switcher directly.
 
 import * as vscode from 'vscode';
 import { getShowWorkspaceName, getStatusBarAlignment } from './configService';
 
-const OPEN_MENU_COMMAND = 'hats-profile-switcher.openMenu';
+const SWITCH_COMMAND = 'hats-profile-switcher.switchProfile';
+const MENU_COMMAND = 'hats-profile-switcher.openMenu';
 
 export class StatusBarView implements vscode.Disposable {
-	private item: vscode.StatusBarItem;
+	private main!: vscode.StatusBarItem;
+	private options!: vscode.StatusBarItem;
 
 	constructor() {
-		this.item = this.create();
-		this.render();
-		this.item.show();
+		this.build();
 	}
 
-	/** Rebuild the item when alignment changes, then re-render. */
+	/** Rebuild on alignment change, then refresh the dynamic label. */
 	refresh(): void {
-		const desired = getStatusBarAlignment();
-		if (this.item.alignment !== desired) {
-			this.item.dispose();
-			this.item = this.create();
-			this.item.show();
+		if (this.main.alignment !== getStatusBarAlignment()) {
+			this.dispose();
+			this.build();
+			return;
 		}
-		this.render();
+		this.renderLabel();
 	}
 
 	dispose(): void {
-		this.item.dispose();
+		this.main.dispose();
+		this.options.dispose();
 	}
 
-	private create(): vscode.StatusBarItem {
-		// A high priority keeps the button near the corner edge.
-		return vscode.window.createStatusBarItem(getStatusBarAlignment(), 100);
+	private build(): void {
+		// Higher priority renders further to the left, so the main button sits
+		// just left of the gear.
+		this.main = this.create(101);
+		this.main.command = SWITCH_COMMAND;
+		this.main.tooltip = 'Hats: switch profile';
+
+		this.options = this.create(100);
+		this.options.command = MENU_COMMAND;
+		this.options.text = '$(gear)';
+		this.options.tooltip = 'Hats: window color and profile options';
+
+		this.renderLabel();
+		this.main.show();
+		this.options.show();
 	}
 
-	private render(): void {
+	private create(priority: number): vscode.StatusBarItem {
+		return vscode.window.createStatusBarItem(getStatusBarAlignment(), priority);
+	}
+
+	private renderLabel(): void {
 		const label = getShowWorkspaceName() ? workspaceName() : 'Hats';
-		this.item.text = `Hats: ${label}`;
-		this.item.tooltip = 'Hats: switch profile or set the window color';
-		this.item.command = OPEN_MENU_COMMAND;
+		this.main.text = `$(mortar-board) ${label}`;
 	}
 }
 

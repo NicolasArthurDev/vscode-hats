@@ -5,20 +5,15 @@ import * as vscode from 'vscode';
 import { Hat, isHexColor } from '../core/palette';
 import { getPalette } from './configService';
 import { apply, clear } from './colorStore';
-import { createProfileFromTemplate, switchProfile } from './profileService';
+import { createProfileFromTemplate } from './profileService';
 
 interface Action extends vscode.QuickPickItem {
 	run: () => Promise<void>;
 }
 
-/** Show the main Hats menu. */
+/** Secondary actions menu (profile switching lives on the main button). */
 export async function openMenu(): Promise<void> {
 	const actions: Action[] = [
-		{
-			label: '$(arrow-swap) Switch profile…',
-			detail: 'Open the native profile switcher',
-			run: switchProfile,
-		},
 		{
 			label: '$(add) New profile from template…',
 			detail: 'Python, Java General, Java Spring, Node.js, …',
