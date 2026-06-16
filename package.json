@@ -5,9 +5,14 @@
   "version": "0.0.1",
   "publisher": "NicolasArthurDev",
   "license": "MIT",
+  "icon": "images/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/NicolasArthurDev/vscode-hats.git"
+  },
+  "homepage": "https://github.com/NicolasArthurDev/vscode-hats#readme",
+  "bugs": {
+    "url": "https://github.com/NicolasArthurDev/vscode-hats/issues"
   },
   "engines": {
     "vscode": "^1.120.0"
@@ -16,6 +21,19 @@
     "Other",
     "Themes"
   ],
+  "keywords": [
+    "profile",
+    "profiles",
+    "workspace",
+    "theme",
+    "color",
+    "switcher",
+    "productivity"
+  ],
+  "galleryBanner": {
+    "color": "#4C3A87",
+    "theme": "dark"
+  },
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -139,6 +157,7 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "check-types": "tsc --noEmit",
+    "icon": "node scripts/generate-icon.js",
     "lint": "eslint src",
     "test": "vscode-test"
   },

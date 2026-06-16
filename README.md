@@ -1,8 +1,10 @@
 # Hats
 
-Wear the right hat for each project. **Hats** puts a button in your status bar
-to switch VSCode profiles and tint the window per workspace — so a Java project
-looks (and loads) different from a Python one.
+> Wear the right hat for each project.
+
+**Hats** puts a button in your status bar to switch VSCode profiles and tint the
+window per workspace — so a Java project looks (and loads) different from a
+Python one.
 
 VSCode profiles already keep each context lightweight by loading only the
 extensions you need. Hats makes them faster to reach and gives every workspace
@@ -63,3 +65,16 @@ profile. Track these upstream requests:
 [microsoft/vscode#226355](https://github.com/microsoft/vscode/issues/226355)
 and [#192852](https://github.com/microsoft/vscode/issues/192852). Once that API
 ships, Hats can show the real profile name.
+
+## Requirements
+
+VSCode with Profiles support (1.75+). No other dependencies.
+
+## Contributing
+
+Issues and pull requests are welcome at
+[NicolasArthurDev/vscode-hats](https://github.com/NicolasArthurDev/vscode-hats).
+
+## License
+
+[MIT](LICENSE)
