@@ -1,9 +1,21 @@
 # Change Log
 
-All notable changes to the "hats-profile-switcher" extension will be documented in this file.
+All notable changes to the "Hats" extension are documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+This project adheres to [Keep a Changelog](http://keepachangelog.com/).
 
-## [Unreleased]
+## [0.0.1] - 2026-06-16
 
-- Initial release
+### Added
+
+- Status bar button (🎓) showing the current workspace; click — or press
+  `Ctrl+K Ctrl+H` (`Cmd+K Cmd+H` on macOS) — to switch profiles.
+- Command Palette actions: create a profile from a native template, set and
+  clear the per-workspace window color.
+- Per-profile window tint (title bar, activity bar, status bar) using a named
+  hat or a custom hex color, with per-element toggles. The color is stored in
+  the active profile's settings, so it follows the profile when you switch.
+- Re-apply of the stored color on startup.
+- One-time tip on first run about applying Hats to all profiles.
+- Settings: `hats.elements`, `hats.palette`, `hats.statusBar.alignment`,
+  `hats.statusBar.showWorkspaceName`, `hats.statusBar.icon`, `hats.color`.

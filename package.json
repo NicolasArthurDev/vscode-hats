@@ -3,21 +3,148 @@
   "displayName": "Hats",
   "description": "Wear the right hat for each project. Switch profiles and tint the window per workspace.",
   "version": "0.0.1",
+  "publisher": "NicolasArthurDev",
+  "license": "MIT",
+  "icon": "images/hat.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NicolasArthurDev/vscode-hats.git"
+  },
+  "homepage": "https://github.com/NicolasArthurDev/vscode-hats#readme",
+  "bugs": {
+    "url": "https://github.com/NicolasArthurDev/vscode-hats/issues"
+  },
   "engines": {
     "vscode": "^1.120.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Themes"
   ],
-  "activationEvents": [],
+  "keywords": [
+    "profile",
+    "profiles",
+    "workspace",
+    "theme",
+    "color",
+    "switcher",
+    "productivity"
+  ],
+  "galleryBanner": {
+    "color": "#2B2B2B",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "hats-profile-switcher.helloWorld",
-        "title": "Hello World"
+        "command": "hats-profile-switcher.switchProfile",
+        "title": "Switch Profile",
+        "category": "Hats"
+      },
+      {
+        "command": "hats-profile-switcher.newProfileFromTemplate",
+        "title": "New Profile from Template",
+        "category": "Hats"
+      },
+      {
+        "command": "hats-profile-switcher.setColor",
+        "title": "Set Window Color",
+        "category": "Hats"
+      },
+      {
+        "command": "hats-profile-switcher.clearColor",
+        "title": "Clear Window Color",
+        "category": "Hats"
       }
-    ]
+    ],
+    "keybindings": [
+      {
+        "command": "hats-profile-switcher.switchProfile",
+        "key": "ctrl+k ctrl+h",
+        "mac": "cmd+k cmd+h"
+      }
+    ],
+    "configuration": {
+      "title": "Hats",
+      "properties": {
+        "hats.color": {
+          "type": "string",
+          "default": "",
+          "description": "The window accent color currently applied by Hats (managed by the extension; usually set through the Hats menu)."
+        },
+        "hats.elements": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "titleBar": {
+              "type": "boolean",
+              "description": "Tint the title bar."
+            },
+            "activityBar": {
+              "type": "boolean",
+              "description": "Tint the activity bar."
+            },
+            "statusBar": {
+              "type": "boolean",
+              "description": "Tint the status bar."
+            }
+          },
+          "default": {
+            "titleBar": true,
+            "activityBar": true,
+            "statusBar": true
+          },
+          "description": "Which workbench elements the hat color is applied to."
+        },
+        "hats.palette": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "color"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Display name of the hat."
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#([0-9a-fA-F]{6})$",
+                "description": "Accent color as a #rrggbb hex string."
+              }
+            }
+          },
+          "default": [],
+          "description": "Named hats to offer in the color picker. When empty, a built-in palette is used."
+        },
+        "hats.statusBar.alignment": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right"
+          ],
+          "default": "right",
+          "description": "Side of the status bar where the Hats button is shown."
+        },
+        "hats.statusBar.showWorkspaceName": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the current workspace name on the Hats button."
+        },
+        "hats.statusBar.icon": {
+          "type": "string",
+          "default": "mortar-board",
+          "markdownDescription": "Codicon name shown on the Hats button (without the `$()` wrapper). Browse names at https://microsoft.github.io/vscode-codicons/dist/codicon.html. Examples: `mortar-board`, `briefcase`, `versions`, `arrow-swap`, `account`, `extensions`. Leave empty for no icon."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
