@@ -5,7 +5,6 @@ import * as vscode from 'vscode';
 import { getShowWorkspaceName, getStatusBarAlignment } from './configService';
 
 const OPEN_MENU_COMMAND = 'hats-profile-switcher.openMenu';
-const ICON = '$(mortar-board)';
 
 export class StatusBarView implements vscode.Disposable {
 	private item: vscode.StatusBarItem;
@@ -38,7 +37,7 @@ export class StatusBarView implements vscode.Disposable {
 
 	private render(): void {
 		const label = getShowWorkspaceName() ? workspaceName() : 'Hats';
-		this.item.text = `${ICON} ${label}`;
+		this.item.text = `Hats: ${label}`;
 		this.item.tooltip = 'Hats: switch profile or set the window color';
 		this.item.command = OPEN_MENU_COMMAND;
 	}
