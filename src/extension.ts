@@ -7,6 +7,7 @@ import { openMenu, pickColor } from './vscode/menu';
 import { clear, reapplyStoredColor } from './vscode/colorStore';
 import { createProfileFromTemplate, switchProfile } from './vscode/profileService';
 import { HATS_SECTION } from './vscode/configService';
+import { maybeShowAllProfilesHint } from './vscode/firstRunHint';
 
 const PREFIX = 'hats-profile-switcher';
 
@@ -30,6 +31,7 @@ export function activate(context: vscode.ExtensionContext): void {
 
 		// Re-apply the stored hat color in case the workspace dropped it on open.
 		void reapplyStoredColor();
+		void maybeShowAllProfilesHint(context);
 	} catch (error) {
 		console.error('[Hats] activation failed:', error);
 		void vscode.window.showErrorMessage(`Hats failed to activate: ${error}`);
