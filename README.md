@@ -30,8 +30,9 @@ its own color.
   - *Hats: Set Window Color* (choose a hat or enter a `#rrggbb` hex)
   - *Hats: Clear Window Color*
 
-Colors are written to the workspace's `.vscode/settings.json`
-(`workbench.colorCustomizations`) and re-applied on startup.
+Colors are stored in the **active profile's** settings
+(`workbench.colorCustomizations`), so the window color follows the profile:
+switch profiles and the color changes with it.
 
 ## Notes about profiles
 

@@ -18,9 +18,9 @@ export function getColor(): string {
 	return config().get<string>('color', '');
 }
 
-/** Persist the applied accent color at the workspace level. */
+/** Persist the applied accent color in the active profile's settings. */
 export async function setColor(color: string): Promise<void> {
-	await config().update('color', color, vscode.ConfigurationTarget.Workspace);
+	await config().update('color', color, vscode.ConfigurationTarget.Global);
 }
 
 /** Which workbench elements the hat color should tint. */

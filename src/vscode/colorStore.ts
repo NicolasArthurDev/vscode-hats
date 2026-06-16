@@ -1,5 +1,10 @@
-// Adapter that reads and writes `workbench.colorCustomizations` at the
-// workspace level, merging non-destructively with the user's own colors.
+// Adapter that reads and writes `workbench.colorCustomizations`.
+//
+// The accent color is stored at the GLOBAL (user) level so it belongs to the
+// active profile: VSCode loads each profile's user settings on switch, so the
+// window color follows the profile automatically — no profile API needed.
+// We also strip Hats keys from workspace settings, both to migrate older
+// per-workspace values and to stop them from shadowing the profile color.
 
 import * as vscode from 'vscode';
 import {
@@ -12,44 +17,58 @@ import { getColor, getEnabledElements, setColor } from './configService';
 const WORKBENCH = 'workbench';
 const KEY = 'colorCustomizations';
 
-function readCurrent(): ColorCustomizations {
-	const current = vscode.workspace
-		.getConfiguration(WORKBENCH)
-		.get<ColorCustomizations>(KEY, {});
-	return { ...current };
-}
+const GLOBAL = vscode.ConfigurationTarget.Global;
+const WORKSPACE = vscode.ConfigurationTarget.Workspace;
 
-async function write(value: ColorCustomizations): Promise<void> {
-	await vscode.workspace
-		.getConfiguration(WORKBENCH)
-		.update(KEY, value, vscode.ConfigurationTarget.Workspace);
-}
-
-/** Apply `color` to the enabled elements, preserving unrelated keys. */
+/** Apply `color` to the enabled elements in the active profile's settings. */
 export async function apply(color: string): Promise<void> {
-	const merged = withoutManagedKeys(readCurrent());
+	const base = withoutManagedKeys(readAt(GLOBAL));
 	const hatColors = buildColorCustomizations(color, getEnabledElements());
-	await write({ ...merged, ...hatColors });
+	await writeAt(GLOBAL, { ...base, ...hatColors });
+	await stripWorkspaceLeftovers();
 	await setColor(color);
 }
 
 /** Remove only the keys Hats manages, leaving the user's colors intact. */
 export async function clear(): Promise<void> {
-	const stripped = withoutManagedKeys(readCurrent());
-	// Persisting an empty object would leave a noisy `{}` behind; drop the
-	// whole key instead when nothing else remains.
-	await write(Object.keys(stripped).length > 0 ? stripped : undefined!);
+	await writeAt(GLOBAL, orUndefined(withoutManagedKeys(readAt(GLOBAL))));
+	await stripWorkspaceLeftovers();
 	await setColor('');
 }
 
-/**
- * Re-apply the stored color on startup. Workspaces sometimes lose
- * customizations on open, so this keeps the window in sync.
- */
+/** Ensure the stored color is applied on startup (and migrate legacy keys). */
 export async function reapplyStoredColor(): Promise<void> {
 	const color = getColor();
 	if (color) {
 		await apply(color);
+	} else {
+		await stripWorkspaceLeftovers();
+	}
+}
+
+function readAt(target: vscode.ConfigurationTarget): ColorCustomizations {
+	const inspected = vscode.workspace
+		.getConfiguration(WORKBENCH)
+		.inspect<ColorCustomizations>(KEY);
+	const value =
+		target === GLOBAL ? inspected?.globalValue : inspected?.workspaceValue;
+	return { ...(value ?? {}) };
+}
+
+async function writeAt(
+	target: vscode.ConfigurationTarget,
+	value: ColorCustomizations | undefined,
+): Promise<void> {
+	await vscode.workspace.getConfiguration(WORKBENCH).update(KEY, value, target);
+}
+
+// Drop Hats-managed keys from workspace settings so older per-workspace values
+// no longer override the profile color. No-op when nothing is open or present.
+async function stripWorkspaceLeftovers(): Promise<void> {
+	const current = readAt(WORKSPACE);
+	const stripped = withoutManagedKeys(current);
+	if (Object.keys(stripped).length !== Object.keys(current).length) {
+		await writeAt(WORKSPACE, orUndefined(stripped));
 	}
 }
 
@@ -59,4 +78,9 @@ function withoutManagedKeys(colors: ColorCustomizations): ColorCustomizations {
 		delete result[key];
 	}
 	return result;
+}
+
+// Persisting `{}` leaves a noisy empty object behind; drop the key instead.
+function orUndefined(colors: ColorCustomizations): ColorCustomizations | undefined {
+	return Object.keys(colors).length > 0 ? colors : undefined;
 }

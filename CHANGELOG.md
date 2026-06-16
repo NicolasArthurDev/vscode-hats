@@ -12,8 +12,9 @@ This project adheres to [Keep a Changelog](http://keepachangelog.com/).
   `Ctrl+K Ctrl+H` (`Cmd+K Cmd+H` on macOS) — to switch profiles.
 - Command Palette actions: create a profile from a native template, set and
   clear the per-workspace window color.
-- Per-workspace window tint (title bar, activity bar, status bar) using a named
-  hat or a custom hex color, with per-element toggles.
+- Per-profile window tint (title bar, activity bar, status bar) using a named
+  hat or a custom hex color, with per-element toggles. The color is stored in
+  the active profile's settings, so it follows the profile when you switch.
 - Re-apply of the stored color on startup.
 - One-time tip on first run about applying Hats to all profiles.
 - Settings: `hats.elements`, `hats.palette`, `hats.statusBar.alignment`,
