@@ -43,6 +43,13 @@
         "category": "Hats"
       }
     ],
+    "keybindings": [
+      {
+        "command": "hats-profile-switcher.switchProfile",
+        "key": "ctrl+k ctrl+h",
+        "mac": "cmd+k cmd+h"
+      }
+    ],
     "configuration": {
       "title": "Hats",
       "properties": {

@@ -20,8 +20,8 @@ its own color.
 
 ## Usage
 
-- **Click the 🎓 button** in the status bar → switch profile right away (native
-  picker).
+- **Click the 🎓 button** in the status bar — or press **`Ctrl+K Ctrl+H`**
+  (`Cmd+K Cmd+H` on macOS) — to switch profile right away (native picker).
 - Everything else lives in the **Command Palette** (`Ctrl/Cmd+Shift+P`) under
   `Hats:`
   - *Hats: New Profile from Template* (Python, Java General, Java Spring, …)
