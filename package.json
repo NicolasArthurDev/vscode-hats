@@ -3,6 +3,12 @@
   "displayName": "Hats",
   "description": "Wear the right hat for each project. Switch profiles and tint the window per workspace.",
   "version": "0.0.1",
+  "publisher": "NicolasArthurDev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NicolasArthurDev/vscode-hats.git"
+  },
   "engines": {
     "vscode": "^1.120.0"
   },
