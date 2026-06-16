@@ -20,11 +20,13 @@ its own color.
 
 ## Usage
 
-- **Click the 🎓 button** → switch profile right away (native picker).
-- **Click the ˄ chevron** next to it → secondary actions:
-  - *New profile from template…* (Python, Java General, Java Spring, …)
-  - *Set window color…* (choose a hat or enter a `#rrggbb` hex)
-  - *Clear window color*
+- **Click the 🎓 button** in the status bar → switch profile right away (native
+  picker).
+- Everything else lives in the **Command Palette** (`Ctrl/Cmd+Shift+P`) under
+  `Hats:`
+  - *Hats: New Profile from Template* (Python, Java General, Java Spring, …)
+  - *Hats: Set Window Color* (choose a hat or enter a `#rrggbb` hex)
+  - *Hats: Clear Window Color*
 
 Colors are written to the workspace's `.vscode/settings.json`
 (`workbench.colorCustomizations`) and re-applied on startup.

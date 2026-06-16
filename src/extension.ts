@@ -3,7 +3,7 @@
 
 import * as vscode from 'vscode';
 import { StatusBarView } from './vscode/statusBarView';
-import { openMenu, pickColor } from './vscode/menu';
+import { pickColor } from './vscode/colorPicker';
 import { clear, reapplyStoredColor } from './vscode/colorStore';
 import { createProfileFromTemplate, switchProfile } from './vscode/profileService';
 import { HATS_SECTION } from './vscode/configService';
@@ -17,7 +17,6 @@ export function activate(context: vscode.ExtensionContext): void {
 
 		context.subscriptions.push(
 			statusBar,
-			registerCommand(`${PREFIX}.openMenu`, openMenu),
 			registerCommand(`${PREFIX}.switchProfile`, switchProfile),
 			registerCommand(`${PREFIX}.newProfileFromTemplate`, createProfileFromTemplate),
 			registerCommand(`${PREFIX}.setColor`, pickColor),

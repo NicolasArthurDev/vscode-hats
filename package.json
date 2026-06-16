@@ -23,28 +23,23 @@
   "contributes": {
     "commands": [
       {
-        "command": "hats-profile-switcher.openMenu",
-        "title": "Hats: Open Menu",
-        "category": "Hats"
-      },
-      {
         "command": "hats-profile-switcher.switchProfile",
-        "title": "Hats: Switch Profile",
+        "title": "Switch Profile",
         "category": "Hats"
       },
       {
         "command": "hats-profile-switcher.newProfileFromTemplate",
-        "title": "Hats: New Profile from Template",
+        "title": "New Profile from Template",
         "category": "Hats"
       },
       {
         "command": "hats-profile-switcher.setColor",
-        "title": "Hats: Set Window Color",
+        "title": "Set Window Color",
         "category": "Hats"
       },
       {
         "command": "hats-profile-switcher.clearColor",
-        "title": "Hats: Clear Window Color",
+        "title": "Clear Window Color",
         "category": "Hats"
       }
     ],
