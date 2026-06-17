@@ -2,9 +2,23 @@
 
 > Wear the right hat for each project.
 
+[![Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/NicolasArthur.hats-profile-switcher?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=NicolasArthur.hats-profile-switcher)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/NicolasArthur.hats-profile-switcher)](https://marketplace.visualstudio.com/items?itemName=NicolasArthur.hats-profile-switcher)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/NicolasArthur.hats-profile-switcher)](https://marketplace.visualstudio.com/items?itemName=NicolasArthur.hats-profile-switcher)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Hats** puts a button in your status bar to switch VSCode profiles and tint the
-window per workspace — so a Java project looks (and loads) different from a
-Python one.
+window per profile — so a Java project looks (and loads) different from a Python
+one.
+
+## Demo
+
+_A quick look at switching profiles and per-profile window colors:_
+
+<!-- Record a short GIF and drop it at images/demo.gif, then uncomment:
+![Hats demo](images/demo.gif)
+-->
+
 
 VSCode profiles already keep each context lightweight by loading only the
 extensions you need. Hats makes them faster to reach and gives every workspace
