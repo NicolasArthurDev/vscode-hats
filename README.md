@@ -15,9 +15,7 @@ one.
 
 _A quick look at switching profiles and per-profile window colors:_
 
-<!-- Record a short GIF and drop it at images/demo.gif, then uncomment:
 ![Hats demo](images/demo.gif)
--->
 
 
 VSCode profiles already keep each context lightweight by loading only the
