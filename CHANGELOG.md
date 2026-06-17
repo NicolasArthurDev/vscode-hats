@@ -4,6 +4,14 @@ All notable changes to the "Hats" extension are documented in this file.
 
 This project adheres to [Keep a Changelog](http://keepachangelog.com/).
 
+## [0.0.2] - 2026-06-17
+
+### Changed
+
+- Marketplace listing only: working badges (the shields.io Marketplace badges
+  were retired, now via vsmarketplacebadges.dev), demo GIF, author info and
+  publisher metadata. No functional changes.
+
 ## [0.0.1] - 2026-06-16
 
 ### Added

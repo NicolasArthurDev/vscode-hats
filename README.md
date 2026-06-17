@@ -2,9 +2,9 @@
 
 > Wear the right hat for each project.
 
-[![Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/NicolasArthur.hats-profile-switcher?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=NicolasArthur.hats-profile-switcher)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/NicolasArthur.hats-profile-switcher)](https://marketplace.visualstudio.com/items?itemName=NicolasArthur.hats-profile-switcher)
-[![Rating](https://img.shields.io/visual-studio-marketplace/r/NicolasArthur.hats-profile-switcher)](https://marketplace.visualstudio.com/items?itemName=NicolasArthur.hats-profile-switcher)
+[![VS Marketplace Version](https://vsmarketplacebadges.dev/version-short/NicolasArthur.hats-profile-switcher.svg)](https://marketplace.visualstudio.com/items?itemName=NicolasArthur.hats-profile-switcher)
+[![Installs](https://vsmarketplacebadges.dev/installs-short/NicolasArthur.hats-profile-switcher.svg)](https://marketplace.visualstudio.com/items?itemName=NicolasArthur.hats-profile-switcher)
+[![Rating](https://vsmarketplacebadges.dev/rating-short/NicolasArthur.hats-profile-switcher.svg)](https://marketplace.visualstudio.com/items?itemName=NicolasArthur.hats-profile-switcher)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Hats** puts a button in your status bar to switch VSCode profiles and tint the
