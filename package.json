@@ -2,7 +2,7 @@
   "name": "hats-profile-switcher",
   "displayName": "Hats",
   "description": "Wear the right hat for each project. Switch profiles and tint the window per workspace.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "NicolasArthur",
   "license": "MIT",
   "author": {
