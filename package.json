@@ -3,8 +3,12 @@
   "displayName": "Hats",
   "description": "Wear the right hat for each project. Switch profiles and tint the window per workspace.",
   "version": "0.0.1",
-  "publisher": "NicolasArthurDev",
+  "publisher": "NicolasArthur",
   "license": "MIT",
+  "author": {
+    "name": "Nicolas Arthur",
+    "url": "https://nicolasarthur.dev"
+  },
   "icon": "images/hat.png",
   "repository": {
     "type": "git",

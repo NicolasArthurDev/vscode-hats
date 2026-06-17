@@ -9,18 +9,5 @@
         "dist": true // set this to false to include "dist" folder in search results
     },
     // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
-    "typescript.tsc.autoDetect": "off",
-    "workbench.colorCustomizations": {
-        "editorRuler.foreground": "#1e1e1e",
-        "titleBar.activeBackground": "#f1f1f1",
-        "titleBar.activeForeground": "#15202b",
-        "titleBar.inactiveBackground": "#f1f1f1",
-        "titleBar.inactiveForeground": "#15202b",
-        "activityBar.background": "#f1f1f1",
-        "activityBar.foreground": "#15202b",
-        "activityBar.inactiveForeground": "#15202b",
-        "statusBar.background": "#f1f1f1",
-        "statusBar.foreground": "#15202b"
-    },
-    "hats.color": "#f1f1f1"
+    "typescript.tsc.autoDetect": "off"
 }
